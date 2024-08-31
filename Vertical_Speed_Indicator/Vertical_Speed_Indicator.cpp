@@ -139,7 +139,7 @@ void Vertical_Speed_Indicator::drawVSI()
   VSINeedleSpr.setSwapBytes(true);
   VSINeedleSpr.pushRotated(&VSImainSpr, VSIAngle, TFT_BLACK);
   VSImainSpr.pushSprite(80, 0);
-  VSImainSpr.fillScreen(TFT_BLACK);
+  VSImainSpr.fillSprite(TFT_BLACK);
 }
 
 
