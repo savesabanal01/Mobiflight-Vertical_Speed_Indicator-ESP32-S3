@@ -29,12 +29,13 @@ void Vertical_Speed_Indicator::begin()
 
   Serial.begin(115200);
   tft.begin();
-  tft.setRotation(3);
+  tft.setRotation(screenRotation);
   tft.fillScreen(PANEL_COLOR);
   tft.setPivot(240, 160);
   tft.setSwapBytes(true);
   tft.pushImage(160, 80, 160, 160, logo);
   delay(3000);
+  tft.setViewport(0, 0, 480, 320, false);
   tft.fillScreen(TFT_BLACK);
 
   VSImainSpr.createSprite(320, 320);
