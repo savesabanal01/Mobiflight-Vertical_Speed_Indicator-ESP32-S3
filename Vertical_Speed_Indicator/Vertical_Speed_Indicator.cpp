@@ -9,7 +9,7 @@
 
 #define PANEL_COLOR 0x7BEE
 
-TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
+    TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
 TFT_eSprite VSImainSpr = TFT_eSprite(&tft);       // Main Sprite
 TFT_eSprite VSINeedleSpr = TFT_eSprite(&tft);     // Vertical Speed
 
@@ -26,11 +26,12 @@ Vertical_Speed_Indicator::Vertical_Speed_Indicator(uint8_t Pin1, uint8_t Pin2)
 
 void Vertical_Speed_Indicator::begin()
 {
-    Serial.begin(115200);
+
+  Serial.begin(115200);
   tft.begin();
   tft.setRotation(3);
   tft.fillScreen(PANEL_COLOR);
-  tft.setPivot(320, 160);
+  tft.setPivot(240, 160);
   tft.setSwapBytes(true);
   tft.pushImage(160, 80, 160, 160, logo);
   delay(3000);
@@ -47,6 +48,7 @@ void Vertical_Speed_Indicator::begin()
   VSINeedleSpr.fillScreen(TFT_BLACK);
   VSINeedleSpr.pushImage(0, 0, vsi_needle_width, vsi_needle_height, vsi_needle);
   VSINeedleSpr.setPivot(vsi_needle_width/2, 160);
+  
 }
 
 void Vertical_Speed_Indicator::attach(uint16_t Pin3, char *init)
