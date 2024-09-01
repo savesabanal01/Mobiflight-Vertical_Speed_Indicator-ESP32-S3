@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MobiflightConnector>
+  <outputs>
+    <config guid="aa61639b-b133-4e48-adf9-b8e75ffb90e7">
+      <active>true</active>
+      <converter>Boolean</converter>
+      <comparison>=</comparison>
+      <description>Vertical Speed</description>
+      <fsuipcSize>1</fsuipcSize>
+      <trigger>change</trigger>
+      <arcazeSerial />
+    </config>
+  </outputs>
+  <inputs />
+</MobiflightConnector>
