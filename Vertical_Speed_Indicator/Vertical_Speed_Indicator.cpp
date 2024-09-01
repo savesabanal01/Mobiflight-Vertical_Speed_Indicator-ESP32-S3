@@ -48,7 +48,7 @@ void Vertical_Speed_Indicator::begin()
   VSINeedleSpr.setSwapBytes(true);
   VSINeedleSpr.fillScreen(TFT_BLACK);
   VSINeedleSpr.pushImage(0, 0, vsi_needle_width, vsi_needle_height, vsi_needle);
-  VSINeedleSpr.setPivot(vsi_needle_width/2, 160);
+  VSINeedleSpr.setPivot(vsi_needle_width/2, 134);
   
 }
 
