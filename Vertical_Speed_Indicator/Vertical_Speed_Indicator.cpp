@@ -111,8 +111,18 @@ void Vertical_Speed_Indicator::set(int16_t messageID, char *setPoint)
 void Vertical_Speed_Indicator::update()
 {
     // Do something which is required regulary
-  if(!powerSaveFlag)
-  {
+//   if(!powerSaveFlag)
+//   {
+//     analogWrite(TFT_BL, instrumentBrightness);
+//     if(prevScreenRotation != screenRotation)
+//     {
+//         tft.setRotation(screenRotation);
+//         prevScreenRotation = screenRotation;
+//     }
+//     drawVSI();
+//    }
+//    else digitalWrite(TFT_BL, LOW);
+
     analogWrite(TFT_BL, instrumentBrightness);
     if(prevScreenRotation != screenRotation)
     {
@@ -120,8 +130,6 @@ void Vertical_Speed_Indicator::update()
         prevScreenRotation = screenRotation;
     }
     drawVSI();
-   }
-   else digitalWrite(TFT_BL, LOW);
 
 }
 
