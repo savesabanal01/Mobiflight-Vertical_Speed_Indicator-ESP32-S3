@@ -49,6 +49,8 @@ void Vertical_Speed_Indicator::begin()
   VSINeedleSpr.fillScreen(TFT_BLACK);
   VSINeedleSpr.pushImage(0, 0, vsi_needle_width, vsi_needle_height, vsi_needle);
   VSINeedleSpr.setPivot(vsi_needle_width/2, 134);
+
+  tft.fillScreen(TFT_BLACK);
   
 }
 
@@ -86,9 +88,7 @@ void Vertical_Speed_Indicator::set(int16_t messageID, char *setPoint)
         // tbd., get's called when Mobiflight shuts down
         break;
     case -2:
-        if(atoi(setPoint) == 1)
-          setPowerSaveMode(true);
-        else setPowerSaveMode(false);
+        setPowerSaveMode((bool) atoi(setPoint));
         // tbd., get's called when PowerSavingMode is entered
         break;
     case 0:
@@ -129,7 +129,16 @@ void Vertical_Speed_Indicator::update()
         tft.setRotation(screenRotation);
         prevScreenRotation = screenRotation;
     }
-    drawVSI();
+    if (screenRotation == 1 || screenRotation == 3)
+    {
+        tft.setViewport(80, 0, 320, 320);
+        drawVSI();
+    }
+    else if (screenRotation == 0 || screenRotation == 2)
+    {
+        tft.setViewport(0, 80, 320, 320);
+        drawVSI();
+    }
 
 }
 
@@ -146,7 +155,7 @@ void Vertical_Speed_Indicator::drawVSI()
   VSImainSpr.pushImage(0, 0,320, 320, vsi_main_gauge);
   VSINeedleSpr.setSwapBytes(true);
   VSINeedleSpr.pushRotated(&VSImainSpr, VSIAngle, TFT_BLACK);
-  VSImainSpr.pushSprite(80, 0);
+  VSImainSpr.pushSprite(0, 0);
   VSImainSpr.fillSprite(TFT_BLACK);
 }
 
@@ -161,6 +170,7 @@ void Vertical_Speed_Indicator::setPowerSaveMode(bool enabled)
     if(enabled)
     {
         digitalWrite(TFT_BL, LOW);
+        tft.fillScreen(TFT_BLACK);
         powerSaveFlag = true;
     }
     else
@@ -178,7 +188,7 @@ void Vertical_Speed_Indicator::setInstrumentBrightnessRatio(float ratio)
 
 void Vertical_Speed_Indicator::setScreenRotation(int rotation)
 {
-  if(rotation == 1 || rotation == 3)
+  if(rotation >= 0 && rotation <= 3)
     screenRotation = rotation;
 }
 
